@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000  # 24 hours in milliseconds
+
+# App Configuration
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+  # First admin bootstrap (auto-created if no ADMIN exists)
+  admin:
+    username: ${ADMIN_USERNAME}
+    email: ${ADMIN_EMAIL}
+    password: ${ADMIN_PASSWORD}
+  # SLA thresholds in hours
+  sla:
+    low-hours: 168       # 7 days
+    medium-hours: 72     # 3 days
+    high-hours: 24       # 1 day
+    urgent-hours: 4      # 4 hours
+
+# Azure Blob Storage (Azurite for local dev)
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+    container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+
